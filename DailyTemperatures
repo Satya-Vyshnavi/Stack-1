@@ -1,0 +1,18 @@
+T.c --> O(n)
+S.c --> O(n)
+
+class Solution {
+    public int[] dailyTemperatures(int[] temperatures) {
+      Stack<Integer> st = new Stack<>();
+      st.push(0);
+      int[] result = new int[temperatures.length];
+      for(int i =1; i<temperatures.length; i++){
+        while(!st.isEmpty() && temperatures[st.peek()] < temperatures[i]){
+          int temp =st.pop(); 
+          result[temp] = i-temp;
+        }      
+        st.push(i);   
+      }
+      return result; 
+    }
+}

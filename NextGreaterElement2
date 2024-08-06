@@ -1,0 +1,22 @@
+T.c --> O(n), S.c --> O(n)
+
+class Solution {
+    public int[] nextGreaterElements(int[] nums) {
+        int n = nums.length;
+        int[] result = new int[n];
+        Stack<Integer> s = new Stack<>();
+        Arrays.fill(result,-1);
+        for(int i =0; i<2*n; i++){
+           while(!s.isEmpty() && nums[i%n] > nums[s.peek()]){
+              result[s.pop()] = nums[i%n];
+           } 
+           if(!s.isEmpty() && (i%n == s.peek())){
+              break;
+           }
+           if(i < n){
+              s.push(i); 
+           }
+        }
+        return result;
+    }
+}
